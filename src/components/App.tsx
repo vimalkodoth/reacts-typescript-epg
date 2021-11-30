@@ -27,7 +27,12 @@ const App = (): JSX.Element => {
     };
 
     if (isError)
-        return <div>Some error has occured. try reloading the app</div>;
+        return (
+            <div>
+                Some error has occured. make sure api server is running or try
+                reloading the app
+            </div>
+        );
 
     return (
         <div className="App">

@@ -1,16 +1,10 @@
 import React, { useEffect, useRef } from 'react';
+import { getCurentTimeInEm } from '../utils/AppUtils';
 
 type TTimeLine = {
     fontSize: number;
 };
 
-const PROGRAMME_PIXEL_LENGTH_PER_HOUR = 328;
-
-const getCurentTimeInEm = (fontSize: number) => {
-    const date = new Date();
-    const totalHrs = date.getHours() + date.getMinutes() / 60;
-    return totalHrs * (PROGRAMME_PIXEL_LENGTH_PER_HOUR / fontSize);
-};
 const TimeLine = ({ fontSize }: TTimeLine) => {
     const ems = getCurentTimeInEm(fontSize);
     const timelineWrapperRef = useRef<HTMLDivElement>(
