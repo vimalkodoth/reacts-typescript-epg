@@ -2,8 +2,8 @@ import { TListing } from './EPGList';
 
 const PROGRAMME_PIXEL_LENGTH_PER_HOUR = 328;
 const getPixelLength = (programme: TListing, baseFontSize = 16) => {
-    const startTime = new Date(programme.end).getTime();
-    const endTime = new Date(programme.start).getTime();
+    const startTime = new Date(programme.start).getTime();
+    const endTime = new Date(programme.end).getTime();
     const diff = endTime - startTime;
     const hours = diff / (1000 * 60 * 60);
     return (PROGRAMME_PIXEL_LENGTH_PER_HOUR / baseFontSize) * hours;
