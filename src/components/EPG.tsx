@@ -128,7 +128,7 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
                             return (
                                 <div
                                     className="Epg__react-grid__grid-list__grid-item"
-                                    key={item.channelID}
+                                    key={item.id}
                                 >
                                     <EPGList
                                         listings={schedules}
