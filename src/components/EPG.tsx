@@ -1,4 +1,3 @@
-import { useRef, useCallback, useEffect, UIEvent } from 'react';
 import '../styles.css';
 import EPGList from './EPGList';
 import TimeScale from './TimeScale';
