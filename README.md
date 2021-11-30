@@ -1,4 +1,4 @@
-# [Bootstrap ReactJS, TypeScript with webpack 5]
+# [Bootstrap ReactJS, TypeScript with webpack 5 Boilerplate]
 
 ## Quick start
 

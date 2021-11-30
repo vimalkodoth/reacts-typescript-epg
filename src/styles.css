@@ -1,0 +1,170 @@
+html,
+body {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+.App {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.Epg__react-grid {
+    max-width: 100%;
+    height: 94.5%;
+    max-height: 94.5%;
+    position: relative;
+    background: #141414;
+    color: #fff;
+}
+
+.Epg__react-grid__grid-list__grid-item,
+.EpgList {
+    display: flex;
+}
+
+.Epg__react-grid__grid-list__grid-item {
+    height: 75px;
+}
+
+.EpgProgramme {
+    border: 1px solid black;
+    background: #2b2b2b;
+    border-radius: 5px;
+    height: 75px;
+    max-height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.EpgProgramme--onnow {
+    background: #404040;
+}
+
+.container::-webkit-scrollbar,
+.Epg__react-grid__channel-list::-webkit-scrollbar,
+.Epg__react-grid__grid-list::-webkit-scrollbar,
+.TimeScale__inner::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.container,
+.Epg__react-grid__channel-list,
+.Epg__react-grid__grid-list,
+.TimeScale__inner {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.Epg__react-grid__grid_wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.Epg__react-grid__channel-list {
+    display: flex;
+    flex-direction: column;
+    width: max(6.25em, 80px);
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: scroll;
+}
+
+.Epg__react-grid__grid-list {
+    transform: translateZ(0);
+    position: relative;
+    left: max(6.25em, 80px);
+    width: calc(100% - max(6.25em, 80px));
+    overflow: scroll;
+    height: 100%;
+}
+
+.Epg__react-grid__channel-list__channel-ico {
+    background: #404040;
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: background 0.5s;
+}
+
+.Epg__react-grid__channel-list__channel-ico:hover {
+    background: #ff681f;
+}
+
+.TimeScale__inner {
+    display: flex;
+    transform: translateZ(0);
+    width: calc(100% - max(4.25em, 60px));
+    overflow: hidden;
+    position: relative;
+    left: max(4.25em, 60px);
+}
+.TimeScale {
+    background: #404040;
+    margin-bottom: 1px;
+    padding-top: 10px;
+}
+.TimeScale__inner__text__curr-time {
+    color: #fff;
+}
+.TimeScale__inner__text__separator {
+    position: relative;
+    bottom: -4px;
+}
+
+.TimeLine__timeline {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(20, 20, 20, 0.3);
+    border-left: 1px solid #0090ff;
+}
+.TimeLine {
+    overflow: scroll;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+}
+.Epg {
+    background: #141414;
+    position: relative;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+}
+
+.TimeLine__timeline::before,
+.TimeLine__timeline:before {
+    padding: 0;
+    content: '';
+    border-right: 20px solid #0090ff;
+    border-left: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    height: 0;
+    position: absolute;
+    left: 0;
+    margin-left: -40px;
+    top: 0;
+}
