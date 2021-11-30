@@ -10,8 +10,8 @@ const getPixelLength = (programme: TListing, baseFontSize = 16) => {
 };
 
 const isNow = (programme: TListing) => {
-    const startTime = new Date(programme.end).getTime();
-    const endTime = new Date(programme.start).getTime();
+    const startTime = new Date(programme.start).getTime();
+    const endTime = new Date(programme.end).getTime();
     if (
         programme &&
         programme.hasOwnProperty('startTime') &&
