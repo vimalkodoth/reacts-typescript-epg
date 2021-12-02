@@ -1,4 +1,4 @@
-# [Bootstrap ReactJS, TypeScript with webpack 5 Boilerplate]
+# ReactJS EPG
 
 ## Quick start
 
