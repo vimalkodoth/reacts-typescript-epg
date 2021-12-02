@@ -24,7 +24,7 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
         timeRef,
     } = useEPGScroll(channels);
 
-    const onButtonClick = (e: any) => {
+    const onButtonClick = () => {
         const currentTime = getCurentTimeInPixels();
         if (!gridRef.current) return;
         const bounding = gridRef.current
