@@ -1,8 +1,8 @@
-import { useRef, useCallback, useEffect, UIEvent } from 'react';
 import '../styles.css';
 import EPGList from './EPGList';
 import TimeScale from './TimeScale';
 import TimeLine from './TimeLine';
+import useEPGScroll from '../hooks/useEPGScroll';
 
 type TEPG = {
     channels: any[];
@@ -11,60 +11,15 @@ type TEPG = {
 };
 
 const EPG = ({ channels, renderItem, settings }: TEPG) => {
-    const channelRef = useRef<HTMLDivElement>(document.createElement('div'));
-    const gridRef = useRef<HTMLDivElement>(document.createElement('div'));
-    const timeRef = useRef<HTMLDivElement>(document.createElement('div'));
-    const stateRef = useRef({} as any);
-    const gridListRef = useRef<HTMLDivElement>(document.createElement('div'));
     const baseFontSize = 16;
-    useEffect(() => {
-        if (!gridListRef.current) return;
-        gridListRef.current.style.width = `${timeRef.current.scrollWidth}px`;
-        gridListRef.current.style.maxWidth = `${timeRef.current.scrollWidth}px`;
-        gridListRef.current.style.overflow = 'hidden';
-    }, [gridListRef, timeRef]);
-
-    const update = () => {
-        const lastKnownScrollTop = stateRef.current.scrollTop;
-        channelRef.current.scrollTop = lastKnownScrollTop;
-        gridRef.current.scrollTop = lastKnownScrollTop;
-        timeRef.current.scrollLeft = gridRef.current.scrollLeft;
-        stateRef.current.scrollTicking = false;
-    };
-
-    const requestTick = () => {
-        if (!stateRef.current.scrollTicking) {
-            requestAnimationFrame(update);
-        }
-        stateRef.current.scrollTicking = true;
-    };
-    const updateLeftTick = () => {
-        const lastKnownScrollLeft = stateRef.current.scrollLeft;
-        gridRef.current.scrollLeft = lastKnownScrollLeft;
-        timeRef.current.scrollLeft = gridRef.current.scrollLeft;
-        stateRef.current.scrollLeftTicking = false;
-    };
-    const requestTickLeft = () => {
-        if (!stateRef.current.scrollLeftTicking) {
-            requestAnimationFrame(updateLeftTick);
-        }
-        stateRef.current.scrollLeftTicking = true;
-    };
-
-    const debouncedRequestTick = useCallback(requestTick, []);
-
-    const debouncedRequestTickLeft = useCallback(requestTickLeft, []);
-
-    const onScroll = (e: UIEvent<HTMLDivElement>) => {
-        if (!channelRef.current || !e.target) return;
-        stateRef.current.scrollTop = (e.target as HTMLDivElement).scrollTop;
-        debouncedRequestTick();
-    };
-
-    const scrollGrid = (e: UIEvent<HTMLDivElement>) => {
-        stateRef.current.scrollLeft = (e.target as HTMLDivElement).scrollLeft;
-        debouncedRequestTickLeft();
-    };
+    const {
+        gridScrollWidth,
+        scrollGrid,
+        onScroll,
+        channelRef,
+        gridRef,
+        timeRef,
+    } = useEPGScroll(channels);
 
     return (
         <>
@@ -122,7 +77,10 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
                         onScroll={onScroll}
                     >
                         {/* <div className="Epg__react-grid__grid_wrapper" ref={gridListRef}> */}
-                        <TimeLine fontSize={baseFontSize} />
+                        <TimeLine
+                            fontSize={baseFontSize}
+                            scrollWidth={gridScrollWidth}
+                        />
                         {channels.map((item: any) => {
                             const schedules = item.schedules;
                             return (

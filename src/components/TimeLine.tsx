@@ -1,17 +1,12 @@
 import React, { useEffect, useRef } from 'react';
+import { getCurentTimeInEm } from '../utils/AppUtils';
 
 type TTimeLine = {
     fontSize: number;
+    scrollWidth: number;
 };
 
-const PROGRAMME_PIXEL_LENGTH_PER_HOUR = 328;
-
-const getCurentTimeInEm = (fontSize: number) => {
-    const date = new Date();
-    const totalHrs = date.getHours() + date.getMinutes() / 60;
-    return totalHrs * (PROGRAMME_PIXEL_LENGTH_PER_HOUR / fontSize);
-};
-const TimeLine = ({ fontSize }: TTimeLine) => {
+const TimeLine = ({ fontSize, scrollWidth }: TTimeLine) => {
     const ems = getCurentTimeInEm(fontSize);
     const timelineWrapperRef = useRef<HTMLDivElement>(
         document.createElement('div')
@@ -29,13 +24,14 @@ const TimeLine = ({ fontSize }: TTimeLine) => {
             }em`;
             timelineWrapperRef.current.style.height = `${scrollHeight}em`;
         }
-    }, [fontSize, ems]);
+    }, [scrollWidth]);
 
     return (
         <div className="TimeLine" ref={timelineWrapperRef}>
             <div
                 className="TimeLine__timeline"
                 style={{ left: `${ems}em` }}
+                ref={timelineWrapperRef}
             ></div>
         </div>
     );

@@ -11,7 +11,6 @@ const useFetch = (endpoint: string) => {
                 const data = await response.json();
                 setData(data.channels);
             } catch (e) {
-                console.log(`[EPG Fetch error] ${e}`);
                 setIsError(true);
             }
         })();
