@@ -4,6 +4,7 @@ import TimeScale from './TimeScale';
 import TimeLine from './TimeLine';
 import useEPGScroll from '../hooks/useEPGScroll';
 import Channels from './Channels';
+import { getCurentTimeInPixels } from '../utils/AppUtils';
 
 type TEPG = {
     channels: any[];
@@ -21,6 +22,33 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
         gridRef,
         timeRef,
     } = useEPGScroll(channels);
+
+    const onButtonClick = (e: any) => {
+        const currentTime = getCurentTimeInPixels();
+        if (!gridRef.current) return;
+        const bounding = gridRef.current
+            .querySelector('.TimeLine__timeline')
+            ?.getBoundingClientRect();
+        if (!bounding) return;
+        const viewPortWidth =
+            window.innerWidth || document.documentElement.clientWidth;
+        if (
+            bounding.top >= 0 &&
+            bounding.left >= 0 &&
+            bounding.left + 5 <= viewPortWidth // assuming 5 pixels wide
+        )
+            return;
+        if (currentTime - gridRef.current.scrollLeft >= 0) {
+            gridRef.current.scrollLeft =
+                currentTime - gridRef.current.scrollLeft;
+            gridRef.current.scrollLeft =
+                gridRef.current.scrollLeft + gridRef.current.clientWidth / 2;
+        } else {
+            gridRef.current.scrollLeft ==
+                -(gridRef.current.scrollLeft - currentTime) +
+                    gridRef.current.clientWidth / 2;
+        }
+    };
 
     return (
         <>
