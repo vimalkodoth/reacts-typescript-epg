@@ -12,8 +12,14 @@ type TEPG = {
 
 const EPG = ({ channels, renderItem, settings }: TEPG) => {
     const baseFontSize = 16;
-    const { scrollGrid, onScroll, channelRef, gridRef, timeRef } =
-        useEPGScroll();
+    const {
+        gridScrollWidth,
+        scrollGrid,
+        onScroll,
+        channelRef,
+        gridRef,
+        timeRef,
+    } = useEPGScroll(channels);
 
     return (
         <>
@@ -71,7 +77,10 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
                         onScroll={onScroll}
                     >
                         {/* <div className="Epg__react-grid__grid_wrapper" ref={gridListRef}> */}
-                        <TimeLine fontSize={baseFontSize} />
+                        <TimeLine
+                            fontSize={baseFontSize}
+                            scrollWidth={gridScrollWidth}
+                        />
                         {channels.map((item: any) => {
                             const schedules = item.schedules;
                             return (

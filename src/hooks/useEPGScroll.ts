@@ -1,6 +1,7 @@
-import { useCallback, useEffect, UIEvent, useRef } from 'react';
+import { useCallback, useEffect, UIEvent, useRef, useState } from 'react';
 
-const useEPGScroll = () => {
+const useEPGScroll = (channels) => {
+    const [gridScrollWidth, setGridScrollWidth] = useState(0);
     const channelRef = useRef<HTMLDivElement>(document.createElement('div'));
     const gridRef = useRef<HTMLDivElement>(document.createElement('div'));
     const timeRef = useRef<HTMLDivElement>(document.createElement('div'));
@@ -12,6 +13,11 @@ const useEPGScroll = () => {
         gridListRef.current.style.maxWidth = `${timeRef.current.scrollWidth}px`;
         gridListRef.current.style.overflow = 'hidden';
     }, [gridListRef, timeRef]);
+
+    useEffect(() => {
+        console.log(gridRef.current.scrollWidth);
+        setGridScrollWidth(gridRef.current.scrollWidth);
+    }, [channels]);
 
     const update = () => {
         const lastKnownScrollTop = stateRef.current.scrollTop;
@@ -56,6 +62,7 @@ const useEPGScroll = () => {
     };
 
     return {
+        gridScrollWidth,
         scrollGrid,
         onScroll,
         channelRef,

@@ -22,8 +22,8 @@ export const generateTime = () => {
 };
 
 export const getPixelLength = (programme: TListing, baseFontSize = 16) => {
-    const startTime = new Date(programme.end).getTime();
-    const endTime = new Date(programme.start).getTime();
+    const startTime = new Date(programme.start).getTime();
+    const endTime = new Date(programme.end).getTime();
     const diff = endTime - startTime;
     const hours = diff / (1000 * 60 * 60);
     return (PROGRAMME_PIXEL_LENGTH_PER_HOUR / baseFontSize) * hours;
@@ -32,11 +32,7 @@ export const getPixelLength = (programme: TListing, baseFontSize = 16) => {
 export const isNow = (programme: TListing) => {
     const startTime = new Date(programme.start).getTime();
     const endTime = new Date(programme.end).getTime();
-    if (
-        programme &&
-        programme.hasOwnProperty('startTime') &&
-        programme.hasOwnProperty('endTime')
-    ) {
+    if (programme) {
         const currentTime = Date.now();
         return startTime <= currentTime && endTime >= currentTime;
     }

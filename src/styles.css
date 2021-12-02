@@ -30,10 +30,12 @@ body {
 
 .Epg__react-grid__grid-list__grid-item,
 .EpgList {
+    position: relative;
     display: flex;
 }
 
 .Epg__react-grid__grid-list__grid-item {
+    display: inline-block;
     height: 75px;
 }
 
