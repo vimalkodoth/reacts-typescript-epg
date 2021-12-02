@@ -40,14 +40,15 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
         )
             return;
         if (currentTime - gridRef.current.scrollLeft >= 0) {
-            gridRef.current.scrollLeft =
-                currentTime - gridRef.current.scrollLeft;
-            gridRef.current.scrollLeft =
-                gridRef.current.scrollLeft + gridRef.current.clientWidth / 2;
+            gridRef.current.scrollLeft +=
+                currentTime -
+                gridRef.current.scrollLeft -
+                gridRef.current.clientWidth / 2;
         } else {
-            gridRef.current.scrollLeft ==
-                -(gridRef.current.scrollLeft - currentTime) +
-                    gridRef.current.clientWidth / 2;
+            gridRef.current.scrollLeft -=
+                gridRef.current.scrollLeft -
+                currentTime +
+                gridRef.current.clientWidth / 2;
         }
     };
 
@@ -110,7 +111,7 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
                             );
                         })}
                     </div>
-                    <Button onClick={onButtonClick}>Now</Button>
+                    <Button onClick={onButtonClick}>NOW</Button>
                 </div>
             </div>
         </>

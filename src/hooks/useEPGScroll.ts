@@ -15,7 +15,6 @@ const useEPGScroll = (channels: any) => {
     }, [gridListRef, timeRef]);
 
     useEffect(() => {
-        console.log(gridRef.current.scrollWidth);
         setGridScrollWidth(gridRef.current.scrollWidth);
     }, [channels]);
 

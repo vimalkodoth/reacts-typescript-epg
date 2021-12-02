@@ -177,8 +177,9 @@ body {
     right: 10%;
     bottom: 15%;
     color: #fff;
-    background: red;
-    box-shadow: 1px 1px px #e0e0e0;
-    padding: 1em 3em;
+    background: #e1a21e;
+    box-shadow: 1px 1px 2px #e1a21e;
+    padding: 15px 30px;
+    border-radius: 5px;
     cursor: pointer;
 }
