@@ -1,5 +1,7 @@
 import { TListing } from '../components/EPGList';
+
 const PROGRAMME_PIXEL_LENGTH_PER_HOUR = 328;
+
 export const generateTime = () => {
     const x = 30; //minutes interval
     const times = []; // time array
@@ -62,4 +64,10 @@ export const getCurentTimeInEm = (fontSize: number) => {
     const date = new Date();
     const totalHrs = date.getHours() + date.getMinutes() / 60;
     return totalHrs * (PROGRAMME_PIXEL_LENGTH_PER_HOUR / fontSize);
+};
+
+export const getCurentTimeInPixels = () => {
+    const date = new Date();
+    const totalHrs = date.getHours() + date.getMinutes() / 60;
+    return totalHrs * PROGRAMME_PIXEL_LENGTH_PER_HOUR;
 };

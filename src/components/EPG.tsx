@@ -5,6 +5,7 @@ import TimeLine from './TimeLine';
 import useEPGScroll from '../hooks/useEPGScroll';
 import Channels from './Channels';
 import { getCurentTimeInPixels } from '../utils/AppUtils';
+import Button from './Button';
 
 type TEPG = {
     channels: any[];
@@ -109,6 +110,7 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
                             );
                         })}
                     </div>
+                    <Button onClick={onButtonClick}>Now</Button>
                 </div>
             </div>
         </>

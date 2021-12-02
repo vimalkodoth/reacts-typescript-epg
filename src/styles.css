@@ -171,3 +171,14 @@ body {
     margin-left: -40px;
     top: 0;
 }
+
+.Button {
+    position: absolute;
+    right: 10%;
+    bottom: 15%;
+    color: #fff;
+    background: red;
+    box-shadow: 1px 1px px #e0e0e0;
+    padding: 1em 3em;
+    cursor: pointer;
+}
