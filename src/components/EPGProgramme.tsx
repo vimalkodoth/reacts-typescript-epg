@@ -13,6 +13,7 @@ type TEPGProgramme = {
     programmeClass: string;
     currentProgrammeClass: string;
 };
+
 const EPGProgramme = ({
     data,
     renderItem,

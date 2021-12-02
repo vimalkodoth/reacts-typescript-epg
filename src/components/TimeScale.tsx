@@ -13,6 +13,7 @@ type TcssClasses = {
     timeScaleSeparatorClass: string;
     timeScaleClass: string;
 };
+
 const TimeScale = React.forwardRef<HTMLDivElement, TTimeScale>(
     ({ onScroll, fontSize = 16, cssClasses }, ref) => {
         const times = generateTime();
