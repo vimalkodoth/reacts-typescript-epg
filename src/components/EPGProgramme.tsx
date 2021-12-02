@@ -35,7 +35,7 @@ const EPGProgramme = ({
                     : ''
             }${programmeClass ? ` ${programmeClass}` : ''}`}
             style={{
-                position: 'relative',
+                position: 'absolute',
                 width: `${pixelLength}em`,
                 left: `${leftPos}em`,
             }}

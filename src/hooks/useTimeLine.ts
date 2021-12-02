@@ -7,13 +7,14 @@ const useTimeLine = (fontSize: number, scrollWidth: number) => {
     useEffect(() => {
         if (!ref.current) throw Error('divRef not assigned');
         if (ref.current) {
-            let { scrollWidth = 0, scrollHeight = 0 } =
-                ref.current.parentElement || {};
+            let { scrollHeight = 0 } = ref.current.parentElement || {};
+            let width = scrollWidth;
             const extra = Math.max(4.25 * fontSize, 60) / fontSize;
-            scrollWidth = scrollWidth / fontSize + 68;
             scrollHeight = scrollHeight / fontSize;
-            ref.current.style.width = `${scrollWidth - ems + extra}em`;
+            width = width / fontSize;
+            ref.current.style.width = `${width - ems + extra}em`;
             ref.current.style.height = `${scrollHeight}em`;
+            ref.current.style.left = `${ems}em`;
         }
     }, [scrollWidth, ems, fontSize]);
 

@@ -6,14 +6,11 @@ type TTimeLine = {
 };
 
 const TimeLine = ({ fontSize, scrollWidth }: TTimeLine) => {
-    const { ref, ems } = useTimeLine(fontSize, scrollWidth);
+    const { ref } = useTimeLine(fontSize, scrollWidth);
 
     return (
         <div className="TimeLine" ref={ref}>
-            <div
-                className="TimeLine__timeline"
-                style={{ left: `${ems}em` }}
-            ></div>
+            <div className="TimeLine__timeline" style={{ left: 0 }}></div>
         </div>
     );
 };
