@@ -2,7 +2,7 @@ import '../styles.css';
 import EPG from './EPG';
 import useFetch from '../hooks/useFetch';
 
-type TSettings = {
+export type TSettings = {
     EPGClass: string;
     ChannelListClass: string;
     ChannelIconClass: string;

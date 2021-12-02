@@ -3,6 +3,7 @@ import EPGList from './EPGList';
 import TimeScale from './TimeScale';
 import TimeLine from './TimeLine';
 import useEPGScroll from '../hooks/useEPGScroll';
+import Channels from './Channels';
 
 type TEPG = {
     channels: any[];
@@ -40,43 +41,22 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
                     }}
                 />
                 <div className="Epg__react-grid">
-                    <div
-                        className={`Epg__react-grid__channel-list${
-                            settings.ChannelListClass
-                                ? ` ${settings.ChannelListClass}`
-                                : ''
-                        }`}
+                    <Channels
                         ref={channelRef}
+                        channels={channels}
+                        settings={
+                            {
+                                ChannelListClass: settings.ChannelListClass,
+                                ChannelIconClass: settings.ChannelIconClass,
+                            } as any
+                        }
                         onScroll={onScroll}
-                    >
-                        {channels.map((item) => {
-                            return (
-                                <div
-                                    className={`Epg__react-grid__channel-list__channel-ico${
-                                        settings.ChannelIconClass
-                                            ? ` ${settings.ChannelIconClass}`
-                                            : ''
-                                    }`}
-                                    key={item.id}
-                                >
-                                    <img
-                                        src={
-                                            'http://s3-eu-west-1.amazonaws.com/rockettv.media.images/popcorn/images/channels/v3/logos/default/MB1_176.png'
-                                        }
-                                        alt=""
-                                        width={75}
-                                        height={75}
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
+                    />
                     <div
                         className="Epg__react-grid__grid-list"
                         ref={gridRef}
                         onScroll={onScroll}
                     >
-                        {/* <div className="Epg__react-grid__grid_wrapper" ref={gridListRef}> */}
                         <TimeLine
                             fontSize={baseFontSize}
                             scrollWidth={gridScrollWidth}
@@ -100,7 +80,6 @@ const EPG = ({ channels, renderItem, settings }: TEPG) => {
                                 </div>
                             );
                         })}
-                        {/* </div> */}
                     </div>
                 </div>
             </div>
